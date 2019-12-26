@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft Corporation.
  * Licensed under the MIT License.
  */
-package io.dapr.actors.runtime;
+package io.dapr.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Serializes and deserializes an object.
  */
-class ActorStateSerializer {
+public class ObjectSerializer {
 
     /**
      * Shared Json serializer/deserializer as per Jackson's documentation.
@@ -26,7 +26,7 @@ class ActorStateSerializer {
      * @return Array of bytes[] with the serialized content.
      * @throws IOException
      */
-    <T> String serialize(T state) throws IOException {
+    public <T> String serialize(T state) throws IOException {
         if (state == null) {
             return null;
         }
@@ -52,7 +52,7 @@ class ActorStateSerializer {
      * @return Object of type T.
      * @throws IOException
      */
-    <T> T deserialize(String value, Class<T> clazz) throws IOException {
+    public <T> T deserialize(String value, Class<T> clazz) throws IOException {
         if (clazz == String.class) {
             return (T) value;
         }

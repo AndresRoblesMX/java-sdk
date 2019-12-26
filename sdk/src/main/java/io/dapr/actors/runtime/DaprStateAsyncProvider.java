@@ -7,6 +7,7 @@ package io.dapr.actors.runtime;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
+import io.dapr.utils.ObjectSerializer;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
@@ -25,9 +26,9 @@ class DaprStateAsyncProvider {
 
   private final AppToDaprAsyncClient daprAsyncClient;
 
-  private final ActorStateSerializer serializer;
+  private final ObjectSerializer serializer;
 
-  DaprStateAsyncProvider(AppToDaprAsyncClient daprAsyncClient, ActorStateSerializer serializer) {
+  DaprStateAsyncProvider(AppToDaprAsyncClient daprAsyncClient, ObjectSerializer serializer) {
     this.daprAsyncClient = daprAsyncClient;
     this.serializer = serializer;
   }

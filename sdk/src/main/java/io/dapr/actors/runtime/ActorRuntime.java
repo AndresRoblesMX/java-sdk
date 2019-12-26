@@ -5,6 +5,8 @@
 package io.dapr.actors.runtime;
 
 import io.dapr.actors.*;
+import io.dapr.utils.ObjectSerializer;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -97,7 +99,7 @@ public class ActorRuntime {
 
     ActorFactory actualActorFactory = actorFactory != null ? actorFactory : new DefaultActorFactory<T>(actorTypeInfo);
       // TODO: Refactor into a Builder class.
-      DaprStateAsyncProvider stateProvider = new DaprStateAsyncProvider(this.appToDaprAsyncClient, new ActorStateSerializer());
+      DaprStateAsyncProvider stateProvider = new DaprStateAsyncProvider(this.appToDaprAsyncClient, new ObjectSerializer());
       ActorService actorService = new ActorServiceImpl(actorTypeInfo, stateProvider, actualActorFactory);
 
     // Create ActorManagers, override existing entry if registered again.
